@@ -18,7 +18,7 @@ class _TabsScreenState extends State<TabsScreen> {
           Tab(icon: Icon(Icons.star), text: 'Favorites',)
         ],)),
         body: TabBarView(children: <Widget>[
-          CategoriesScreen(), FavoritesScreen()
+//          CategoriesScreen(), FavoritesScreen()
       ],),
     ),
 
