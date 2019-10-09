@@ -66,7 +66,9 @@ class _MyAppState extends State<MyApp>{
         _favoriteMeals.add(DUMMY_MEALS.firstWhere((meal) => meal.id == mealId));
       });
     }
-
+  }
+  bool _isMealFavorite(String id){
+    return _favoriteMeals.any((meal) => meal.id == id);
   }
   // This widget is the root of your application.
   @override
@@ -98,7 +100,7 @@ class _MyAppState extends State<MyApp>{
       routes: {
         '/': (context) => TabsBottomScreen(_favoriteMeals),
         CategoryMealsScreen.routeName : (context) => CategoryMealsScreen(_availableMeals),
-        MealDetailScreen.routeName : (context) => MealDetailScreen(_toggleFavorite),
+        MealDetailScreen.routeName : (context) => MealDetailScreen(_toggleFavorite, _isMealFavorite),
         FiltersScreen.routeName: (context) => FiltersScreen(_filters,_setFilters)
       },
       //for screens or routes that are not defined, automatically goes to this.
