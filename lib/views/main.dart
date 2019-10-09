@@ -55,6 +55,18 @@ class _MyAppState extends State<MyApp>{
 
   void _toggleFavorite(String mealId){
 
+    final existingIndex = _favoriteMeals.indexWhere((meal) => meal.id == mealId);
+
+    if (existingIndex >= 0){
+      setState(() {
+        _favoriteMeals.removeAt(existingIndex);
+      });
+    }else{
+      setState(() {
+        _favoriteMeals.add(DUMMY_MEALS.firstWhere((meal) => meal.id == mealId));
+      });
+    }
+
   }
   // This widget is the root of your application.
   @override
@@ -86,7 +98,7 @@ class _MyAppState extends State<MyApp>{
       routes: {
         '/': (context) => TabsBottomScreen(_favoriteMeals),
         CategoryMealsScreen.routeName : (context) => CategoryMealsScreen(_availableMeals),
-        MealDetailScreen.routeName : (context) => MealDetailScreen(),
+        MealDetailScreen.routeName : (context) => MealDetailScreen(_toggleFavorite),
         FiltersScreen.routeName: (context) => FiltersScreen(_filters,_setFilters)
       },
       //for screens or routes that are not defined, automatically goes to this.
